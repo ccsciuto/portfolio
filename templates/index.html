@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cecelia Sciuto | Portfolio</title>
+    <link rel="stylesheet" href="static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <div class="photo-wrapper">
+                <img src="static/profile2.jpeg" alt="Cecelia Sciuto" class="hero-photo" id="profilePhoto">
+            </div>
+            <div class="hero-text">
+                <h1>Cecelia Sciuto</h1>
+                <p>Data-Driven Problem Solver | Data Science & Analytics Enthusiast</p>
+                <nav>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="/photography">Photography</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <hr class="section-divider">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm Cecelia, an experienced data analyst with 5 years in the field and a specialized focus on sales analytics over the past 3 years. I’ve built my career around turning complex datasets into actionable insights, primarily using SQL for data wrangling and tools like Power BI and Domo for executive-level sales reporting and visualization. I also enjoy applying Python to automate workflows and explore data both professionally and personally.<br>
+<br>
+Originally from New Hampshire, I moved to Texas to attend Texas State University, where I earned my degree in Finance. Outside of work, I’m passionate about traveling and exploring new cultures — especially through food. I’m an outdoor enthusiast, a dedicated runner, and recently qualified for the Boston Marathon! When I’m not logging miles or planning my next trip, you can usually find me hiking with my rescue dog or unwinding with a good book.</p>
+    </section>
+    <hr class="section-divider">
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+             <a href="marathon_prediction" class="project-card">
+                <h3>Marathon Time Predictor: A Data-Driven Approach to Race Pacing</h3>
+                <p>This project leverages historical running data from Garmin to predict marathon finish times, tailored to specific training conditions. Using Python and libraries like Pandas, Statsmodels, and Pickle, I performed extensive data cleaning, calculated a custom "power" metric (average speed / average heart rate * 1000), and applied time-series forecasting techniques to create a predictive model.<br>
+                <br>
+                The model trains on past workout data and requires user input of the race date and expected heart rate to estimate race pace and finish time. This feature allowed me to simulate various effort levels (via different heart rate inputs) to predict how different pacing strategies would impact my performance. The model continuously adapted as I logged new runs, providing real-time insights that I used throughout my marathon training.</p>
+            </a>
+            <a href="paceadjcalc" class="project-card">
+            <h3>Pace Adjuster: Temperature & Dew Point Running Calculator</h3>
+            <p>This Python-powered calculator was designed to help runners adjust their paces based on real-world weather conditions — specifically temperature and dew point.<br>
+                <br>Perfect for runners training in non-ideal climates (like Austin's summer heat), the tool lets you:<br>
+                Input a target pace and convert it to a "warmer" weather-adjusted pace.<br>
+                OR input a pace you’ve already run in hot/humid conditions and convert it to the equivalent pace for "cooler" (ideal) temperatures.<br>
+                <br>Just enter your pace, temperature, and dew point, select the direction of the conversion — and get an instant, effort-adjusted pace to guide your training or race planning.</p>
+             </a>
+             <a href="garmincharts" class="project-card">
+            <h3>Running Performance Dashboard: Garmin API + Python Analysis</h3>
+            <p>This project connects directly to Garmin’s API to pull real-time running data, which I then analyzed using Python. I focused on visualizing performance trends over time — tracking metrics like pace, heart rate, distance, and training load. The result is a set of clear, insightful charts that helped me monitor my progress and adapt my training strategy with real-world data.</p>
+            </a>
+        </div>
+    </section>
+    <hr class="section-divider">
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <p>SQL, Python, Power BI, Salesforce, BigQuery, Data Visualization, Analytics Strategy.</p>
+    </section>
+    <hr class="section-divider">
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:ceceliasciuto@gmail.com">ceceliasciuto@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/ceceliasciuto/" target="_blank">Cecelia Sciuto</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Cecelia Sciuto</p>
+    </footer>
+    <script>
+    const photo = document.getElementById('profilePhoto');
+    photo.addEventListener('click', () => {
+        photo.classList.toggle('expanded');
+    });
+    </script>
+</body>
+</html>

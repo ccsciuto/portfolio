@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Running Data{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="chart full-width">
+      <div class="chart">
+    <h1>Monthly Distance Run</h1>
+    <iframe src="{{ url_for('static', filename='charts/running_distance_chart.html') }}" width="100%" height="600"></iframe>
+      </div>
+      <hr class="section-divider">
+  <div class="chart full-width">
+      <div class="chart">
+    <h1>Monthly Average Heart Rate</h1>
+    <iframe src="{{ url_for('static', filename='charts/running_avg_hr_chart.html') }}" width="100%" height="600"></iframe>
+      </div>
+  <div class="chart full-width">
+      <hr class="section-divider">
+      <div class="chart">
+    <h1>Monthly Average Pace</h1>
+    <iframe src="{{ url_for('static', filename='charts/running_avg_pace_chart.html') }}" width="100%" height="600"></iframe>
+      </div>
+</body>
+</html>
