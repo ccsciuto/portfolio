@@ -1,2 +1,1 @@
-web: gunicorn website.server:app
-# Deploy fix comment
+web: gunicorn server:app
