@@ -337,3 +337,92 @@ body {
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(22, 160, 133, 0.5); /* teal glow */
 }
+/* ============================= */
+/*        MOBILE STYLES          */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-photo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .project-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        width: 90%;
+    }
+
+    section {
+        margin: 50px 0;
+        padding: 20px;
+    }
+
+    .calculator {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .coming-soon-container {
+        margin: 60px auto;
+        padding: 20px;
+    }
+
+    .photo-scroll img {
+        height: 150px;
+    }
+
+    footer {
+        font-size: 0.8rem;
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.6rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .photo-scroll img {
+        height: 120px;
+    }
+}
