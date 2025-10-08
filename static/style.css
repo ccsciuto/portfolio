@@ -133,7 +133,7 @@ nav a:hover {
     transform: scale(2);
     z-index: 1000;
     position: relative;
-    box-shadow: 0 0 20px rgba(22, 160, 133, 0.5); /* teal glow */
+    box-shadow: 0 0 20px rgba(22, 160, 133, 0.5);
 }
 
 p, ul {
@@ -195,6 +195,26 @@ body {
     padding: 20px;
 }
 
+/* ========================= */
+/*        GARMIN CHARTS      */
+/* ========================= */
+.chart-container {
+    width: 95%;
+    max-width: 1400px;
+    margin: 0 auto 40px auto;
+    background-color: var(--card);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.chart-container iframe,
+.chart-container canvas {
+    width: 100% !important;
+    height: 600px !important;
+}
+
+/* Title + Calculator containers */
 #container1 h1 {
     text-align: center;
     margin-bottom: 10px;
@@ -240,7 +260,7 @@ body {
 
 .calculator input:focus {
     outline: none;
-    border-color: var(--secondary);  /* teal focus */
+    border-color: var(--secondary);
     box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.2);
 }
 
@@ -256,18 +276,19 @@ body {
 }
 
 .calculator button:hover {
-    background-color: var(--secondary); /* teal hover */
+    background-color: var(--secondary);
 }
 
 .section-divider {
   border: none;
   height: 5px;
-  background-color: #e91e63; /* teal divider */
+  background-color: #e91e63;
   width: 60%;
   margin: 40px auto;
   border-radius: 2px;
 }
 
+/* Coming Soon box */
 .coming-soon-container {
     max-width: 800px;
     margin: 100px auto;
@@ -303,21 +324,7 @@ body {
     font-weight: bold;
 }
 
-#container1 {
-    font-size: 2rem;
-    color: var(--accent);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#bottom_div2 {
-    text-align: center;
-    font-size: 1rem;
-    padding: 15px 15px;
-    color: var(--text);
-}
-
+/* Photos section */
 .photo-scroll-wrapper {
   overflow-x: auto;
   white-space: nowrap;
@@ -335,12 +342,12 @@ body {
 
 .photo-scroll img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(22, 160, 133, 0.5); /* teal glow */
+  box-shadow: 0 0 12px rgba(22, 160, 133, 0.5);
 }
+
 /* ============================= */
 /*        MOBILE STYLES          */
 /* ============================= */
-
 @media (max-width: 768px) {
 
     body {
@@ -375,10 +382,6 @@ body {
         font-size: 1.8rem;
     }
 
-    .hero-text p {
-        font-size: 1rem;
-    }
-
     .project-grid {
         flex-direction: column;
         align-items: center;
@@ -398,9 +401,9 @@ body {
         padding: 15px;
     }
 
-    .coming-soon-container {
-        margin: 60px auto;
-        padding: 20px;
+    .chart-container {
+        width: 100%;
+        padding: 10px;
     }
 
     .photo-scroll img {
@@ -424,5 +427,10 @@ body {
 
     .photo-scroll img {
         height: 120px;
+    }
+
+    .chart-container {
+        width: 100%;
+        padding: 8px;
     }
 }
