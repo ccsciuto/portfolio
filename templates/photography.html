@@ -1,113 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Photography</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 12px;
-    padding: 10px;
-  }
-  .gallery img {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease-in-out;
-  }
-  .gallery img:hover {
-    transform: scale(1.03);
-  }
-
-  /* Lightbox overlay */
-  #lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  #lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-  }
-  #lightbox:target {
-    display: flex;
-  }
-
-  /* Close button */
-  #lightbox-close {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    user-select: none;
-  }
-</style>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELNQHHSLYS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ELNQHHSLYS');
-</script>
-<body>
-
-<h1>Photo Gallery</h1>
-
-<div class="gallery">
-  {% for photo in photo_files %}
-    <img src="{{ url_for('static', filename='photos/' ~ photo) }}" alt="Photo" onclick="openLightbox(this.src)" />
-  {% endfor %}
-</div>
-
-<!-- Lightbox container -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-  <img id="lightbox-img" src="" alt="Expanded photo" />
-</div>
-
-<script>
-  function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    lightbox.style.display = 'flex';
-    lightboxImg.src = src;
-  }
-
-  function closeLightbox(event) {
-    if(event) event.stopPropagation(); // Prevent immediate close when clicking close button
-    const lightbox = document.getElementById('lightbox');
-    lightbox.style.display = 'none';
-    document.getElementById('lightbox-img').src = '';
-  }
-
-  // Also close lightbox if user presses ESC key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeLightbox();
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fafafa;
     }
-  });
-</script>
+    h1 {
+      margin-top: 20px;
+    }
+    .albums {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      padding: 20px;
+    }
+    .album-card {
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      overflow: hidden;
+      background: white;
+      transition: transform 0.2s ease-in-out;
+    }
+    .album-card:hover {
+      transform: scale(1.03);
+    }
+    .album-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .album-card p {
+      margin: 0;
+      padding: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Photo Albums</h1>
 
+  <div class="albums">
+    {% for album in albums %}
+      <div class="album-card">
+        <a href="{{ url_for('album', album_name=album.folder) }}">
+          <img src="{{ url_for('static', filename=album.cover) }}" alt="{{ album.name }} cover" />
+          <p>{{ album.name }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 </body>
 </html>

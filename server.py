@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 import math
 import os
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -27,12 +28,57 @@ def budget():
 
 @app.route("/photography")
 def photography():
-    photo_folder = os.path.join('static', 'photos')
-    photo_files = [
-        f for f in os.listdir(photo_folder)
-        if f.lower().endswith(('.jpg', '.jpeg', '.png'))
-    ]
-    return render_template("photography.html", photo_files=photo_files)
+    photo_root = os.path.join("static", "photos")
+    albums = []
+    for folder in os.listdir(photo_root):
+        folder_path = os.path.join(photo_root, folder)
+        if os.path.isdir(folder_path):
+            images = [f for f in os.listdir(folder_path)
+                      if f.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))]
+            if images:
+                cover_image = images[0]  # first image as preview
+                albums.append({
+                    "name": folder.capitalize(),
+                    "folder": folder,
+                    "cover": f"photos/{folder}/{cover_image}"
+                })
+    return render_template("photography.html", albums=albums)
+
+
+@app.route("/photography/<album_name>")
+def album(album_name):
+    album_path = os.path.join("static", "photos", album_name)
+    photos = [f for f in os.listdir(album_path)
+              if f.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))]
+
+    # Get dimensions and group by orientation
+    portrait = []
+    landscape = []
+    square = []
+
+    for photo in photos:
+        try:
+            img_path = os.path.join(album_path, photo)
+            with Image.open(img_path) as img:
+                width, height = img.size
+                if height > width:
+                    portrait.append(photo)
+                elif width > height:
+                    landscape.append(photo)
+                else:
+                    square.append(photo)
+        except Exception as e:
+            print(f"Error reading {photo}: {e}")
+
+    # Combine groups — you can rearrange this order however you like
+    sorted_photos = landscape + portrait + square
+
+    return render_template(
+        "album.html",
+        album_name=album_name.capitalize(),
+        photos=sorted_photos,
+        album_folder=album_name
+    )
 
 
 @app.route('/garmincharts')
