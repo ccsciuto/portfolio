@@ -31,12 +31,61 @@
   </style>
 </head>
 <body>
-  <h1>{{ album_name }}</h1>
+<h1>{{ album_name }}</h1>
 
-  <div class="gallery">
-    {% for photo in photos %}
-      <img src="{{ url_for('static', filename='photos/' + album_folder + '/' + photo) }}" alt="{{ album_name }} photo" />
-    {% endfor %}
-  </div>
+<div class="gallery">
+{% for photo in photos %}
+  <img src="{{ url_for('static', filename='photos/' + album_folder + '/' + photo) }}"
+       alt="{{ album_name }} photo"
+       onclick="openLightbox({{ loop.index0 }})" />
+{% endfor %}
+</div>
+
+<!-- Lightbox overlay -->
+<div id="lightbox" style="display:none; justify-content:center; align-items:center;">
+    <span id="close" onclick="closeLightbox()">&times;</span>
+    <span id="prev" onclick="prevPhoto()">&#10094;</span>
+    <span id="next" onclick="nextPhoto()">&#10095;</span>
+    <img id="lightbox-img" src="" alt="Expanded photo" />
+</div>
+<script>
+let photos = [
+  {% for photo in photos %}
+    "{{ url_for('static', filename='photos/' + album_folder + '/' + photo) }}"{% if not loop.last %},{% endif %}
+  {% endfor %}
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  const lightbox = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = photos[currentIndex];
+  lightbox.style.display = 'flex';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+
+function nextPhoto() {
+  currentIndex = (currentIndex + 1) % photos.length;
+  document.getElementById('lightbox-img').src = photos[currentIndex];
+}
+
+function prevPhoto() {
+  currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+  document.getElementById('lightbox-img').src = photos[currentIndex];
+}
+
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('lightbox').style.display === 'flex') {
+    if (e.key === 'ArrowRight') nextPhoto();
+    if (e.key === 'ArrowLeft') prevPhoto();
+    if (e.key === 'Escape') closeLightbox();
+  }
+});
+</script>
 </body>
 </html>
